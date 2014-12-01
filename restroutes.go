@@ -1,11 +1,12 @@
-package restoutes
+package restroutes
 
 import (
+	"net/http"
 	"reflect"
 )
 
 type handlerInterface interface {
-	HandleFunc()
+	HandleFunc(w http.ResponseWriter, r *http.Request)
 }
 
 type Route struct {
