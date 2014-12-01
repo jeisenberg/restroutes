@@ -6,7 +6,7 @@ import (
 )
 
 type handlerInterface interface {
-	HandleFunc(string, func())
+	HandleFunc(string, func(http.ResponseWriter, *http.Request))
 }
 
 type Route struct {
