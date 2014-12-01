@@ -1,12 +1,13 @@
 package restroutes
 
 import (
+	"github.com/gorilla/mux"
 	"net/http"
 	"reflect"
 )
 
 type handlerInterface interface {
-	HandleFunc(string, func(http.ResponseWriter, *http.Request))
+	HandleFunc(string, func(http.ResponseWriter, *http.Request)) *mux.Route
 }
 
 type Route struct {
