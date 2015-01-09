@@ -11,8 +11,9 @@ type handlerInterface interface {
 }
 
 type Route struct {
-	Receiver interface{}
-	Method   string
+	Receiver      interface{}
+	Method        string
+	RequestMethod string
 }
 
 type Routes map[string]Route
@@ -22,6 +23,6 @@ func Register(m handlerInterface, routes Routes) {
 		s := reflect.ValueOf(v.Receiver).MethodByName(v.Method)
 		methodIface := s.Interface()
 		method := methodIface.(func(w http.ResponseWriter, r *http.Request))
-		m.HandleFunc(k, method)
+		m.HandleFunc(k, method).Methods(v.RequestMethod)
 	}
 }
